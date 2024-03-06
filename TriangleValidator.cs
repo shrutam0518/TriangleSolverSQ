@@ -1,21 +1,39 @@
 ﻿
+using System.Security.Policy;
+
 namespace TriangleSolver
 {
     public class TriangleValidator
     {
         public string ValidateTriangle(int sideOne, int sideTwo, int sideThree)
         {
-            //rule for equilateral triangle
-            if (sideOne == sideTwo && sideTwo == sideThree)
+            if ((sideOne == 0) || (sideTwo == 0) || (sideThree == 0))
             {
-                return "Equilateral Triangle";
+                return "Invalid Triangle - a zero has been detected";
+                 
             }
-            //rule for isosceles  triangles
-            if (sideOne == sideTwo || sideOne == sideThree || sideTwo == sideThree)
+            if (((sideOne + sideTwo) > sideThree) && ((sideOne + sideThree) > sideTwo) && ((sideTwo + sideThree) > sideOne))
             {
-                return "Isosceles Triangle";
+                //rule for equilateral triangle
+                if (sideOne == sideTwo && sideTwo == sideThree)
+                {
+                    return "Equilateral Triangle";
+                }
+                //rule for isosceles  triangles
+                if (sideOne == sideTwo || sideOne == sideThree || sideTwo == sideThree)
+                {
+                    return "Isosceles Triangle";
+                }
+                else
+                {
+                    return "Scalene Triangle";
+                }
             }
-            return "Invalid Response";
+            else
+            {
+                return "Invalid Response";
+            }
+
         }
     }
 }
